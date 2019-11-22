@@ -79,6 +79,13 @@ bool PortAudioMicrophoneWrapper::initialize() {
         ACSDK_CRITICAL(LX("Failed to create stream writer"));
         return false;
     }
+    PaStreamParameters inputParameters;
+    std::memset(&inputParameters, 0, sizeof(inputParameters));
+    inputParameters.device = Pa_GetDefaultInputDevice();
+    inputParameters.channelCount = NUM_INPUT_CHANNELS;
+    inputParameters.sampleFormat = paInt16;
+    inputParameters.suggestedLatency = suggestedLatency;
+    inputParameters.hostApiSpecificStreamInfo = nullptr;
     PaError err;
     err = Pa_Initialize();
     if (err != paNoError) {
