@@ -85,7 +85,7 @@ bool PortAudioMicrophoneWrapper::initialize() {
         ACSDK_CRITICAL(LX("Failed to initialize PortAudio").d("errorCode", err));
         return false;
     }
-
+#if 0
     PaTime suggestedLatency;
     bool latencyInConfig = getConfigSuggestedLatency(suggestedLatency);
 
@@ -126,6 +126,7 @@ bool PortAudioMicrophoneWrapper::initialize() {
         ACSDK_CRITICAL(LX("Failed to open PortAudio default stream").d("errorCode", err));
         return false;
     }
+#endif
     return true;
 }
 
